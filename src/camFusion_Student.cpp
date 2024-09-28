@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <algorithm>
 #include <numeric>
@@ -187,7 +186,6 @@ void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, 
     }
 }
 
-
 #include <opencv2/opencv.hpp>
 #include <opencv2/features2d/features2d.hpp> // Include this for drawMatches
 
@@ -237,6 +235,11 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
     double deltaTime = 1.0 / frameRate;
     TTC = (medianRatio != 1.0) ? -deltaTime / (1.0 - medianRatio) : std::numeric_limits<double>::infinity();
 
+  
+  // Output the TTC result
+    std::cout << "Camera TTC: " << TTC << " seconds" << std::endl;
+
+  
     // Optional visualization
     if (visImg != nullptr)
     {
@@ -263,6 +266,7 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
         
         std::string ttcText = "TTC Camera: " + std::to_string(TTC) + " s";
         cv::putText(visImage, ttcText, cv::Point(10, 30), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 2);
+      
         
         cv::imshow("TTC Visualization", visImage);
         cv::waitKey(0);
@@ -330,7 +334,8 @@ using namespace cv;
 void matchBoundingBoxes(std::vector<cv::DMatch> &matches, std::map<int, int> &bbBestMatches, DataFrame &prevFrame, DataFrame &currFrame)
 {
 
-    int prevBoxCount = prevFrame.boundingBoxes.size();
+  
+	int prevBoxCount = prevFrame.boundingBoxes.size();
     int currBoxCount = currFrame.boundingBoxes.size();
     std::vector<std::vector<int>> matchCounts(prevBoxCount, std::vector<int>(currBoxCount, 0));
 
@@ -395,4 +400,3 @@ void matchBoundingBoxes(std::vector<cv::DMatch> &matches, std::map<int, int> &bb
         }
     }
 }
-
