@@ -304,19 +304,38 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
 }
 ```
 ## FP.5 : Performance Evaluation 1
+In this step, tests were conducted to assess the time-to-collision (TTC) estimates derived from LiDAR measurements. I compared the LiDAR TTC results frame by frame with one of the most reliable combinations obtained from the camera TTC, which is the SHITOMASI detector paired with the BRISK descriptor. As demonstrated in the table and image below, the LiDAR TTC result at frame 3 significantly diverged from the camera TTC estimate. A possible reason for this result could be insufficiently robust filtering of outlier LiDAR points.
+
+<img width="1150" alt="image" src="https://github.com/user-attachments/assets/a6d78f12-2483-4ff0-99c4-8d94d5bbcdba">
 
 <img width="1199" alt="image" src="https://github.com/user-attachments/assets/3974d315-7772-463b-8fd0-28869327d3a9">
 
-<img width="1199" alt="image" src="https://github.com/user-attachments/assets/c6d33c34-bf2b-4cf6-a9e1-5dcbe940afc2">
+## FP.6 : Performance Evaluation 2
+In this step, I evaluated various detector/descriptor combinations to analyze the differences in TTC estimation. As illustrated below, some detectors, such as SHITOMASI and AKAZE, demonstrated superior performance, while others, like the ORB detector, yielded questionable results with several significant discrepancies. These inconsistencies may have been caused by a limited number of detected keypoints and matches.
 
-<img width="1199" alt="image" src="https://github.com/user-attachments/assets/d76f8c72-6241-4950-ac97-80c0b575ca81">
+**SHITOMASI Detector:**
+<img width="1145" alt="image" src="https://github.com/user-attachments/assets/56715096-d556-4924-9d2d-0f78e7d1a1d9">
 
-<img width="1199" alt="image" src="https://github.com/user-attachments/assets/2213ded3-bc32-43c6-bfb7-66a539e3347e">
+**HARRIS Detector:**
+<img width="1145" alt="image" src="https://github.com/user-attachments/assets/235964f2-4e6f-4af5-a7c2-d83ae3d8fe82">
 
-<img width="1199" alt="image" src="https://github.com/user-attachments/assets/5a4d91fa-ec74-433c-9eeb-53d22d7148a7">
+**FAST Detector:**
+<img width="1146" alt="image" src="https://github.com/user-attachments/assets/729332bf-47ab-406e-b32b-c9cf44eedd9d">
+
+**BRISK Detector:**
+<img width="1146" alt="image" src="https://github.com/user-attachments/assets/a1cd4020-f6b1-4b2a-a011-790909734887">
+
+**ORB Detector:**
+<img width="1147" alt="image" src="https://github.com/user-attachments/assets/95685dd1-5c21-4985-88be-df9a35589359">
+
+**AKAZE Detector:**
+<img width="1146" alt="image" src="https://github.com/user-attachments/assets/0c6e206c-883c-4919-87b5-2d73f40b03da">
+
+**SIFT Detector:**
+<img width="1147" alt="image" src="https://github.com/user-attachments/assets/a0424942-592f-4821-92fa-0aa613790e17">
 
 
-
+I collected 18 frames of TTC estimation and craeted a short clip for demonstration. For the camera-based estimation the AKAZE-BRISK combination was used.
 https://github.com/user-attachments/assets/4d82cf5c-a0a6-498c-80db-c751ddaba51b
 
 
