@@ -1,4 +1,3 @@
-
 #include <numeric>
 #include "matching2D.hpp"
 
@@ -15,8 +14,21 @@ using namespace std;
 
     if (matcherType.compare("MAT_BF") == 0)
     {
+
+      // Check if descriptors are in the correct format
+        if (descSource.type() != CV_8U)
+        {
+            descSource.convertTo(descSource, CV_8U);
+        }
+        if (descRef.type() != CV_8U)
+        {
+            descRef.convertTo(descRef, CV_8U);
+        }
+
+        // Create BFMatcher
         int normType = cv::NORM_HAMMING;
         matcher = cv::BFMatcher::create(normType, crossCheck);
+      /////////////////////
     }
     else if (matcherType.compare("MAT_FLANN") == 0)
     {
@@ -42,7 +54,6 @@ using namespace std;
     else if (selectorType.compare("SEL_KNN") == 0)
     { // k nearest neighbors (k=2)
 
-        // ...
         std::vector<std::vector<cv::DMatch>> knnMatches;
         matcher->knnMatch(descSource, descRef, knnMatches, 2); // Get the 2 nearest neighbors for each descriptor
 
@@ -55,7 +66,6 @@ using namespace std;
                 matches.push_back(knnMatches[i][0]); // Accept the best match if it is significantly better than the second
             }
         }
-        //////
     }
 }
 
