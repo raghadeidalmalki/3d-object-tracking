@@ -336,6 +336,7 @@ In this step, I evaluated various detector/descriptor combinations to analyze th
 
 
 I collected 18 frames of TTC estimation and craeted a short clip for demonstration. For the camera-based estimation the AKAZE-BRISK combination was used.
+
 https://github.com/user-attachments/assets/4d82cf5c-a0a6-498c-80db-c751ddaba51b
 
 
