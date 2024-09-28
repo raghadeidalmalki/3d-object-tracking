@@ -1,4 +1,3 @@
-
 /* INCLUDES FOR THIS PROJECT */
 #include <iostream>
 #include <fstream>
@@ -88,7 +87,6 @@ int main(int argc, const char *argv[])
         // load image from file 
         cv::Mat img = cv::imread(imgFullFilename);
 
-      /////////////////////////////////////
       //from midterm project
        //// STUDENT ASSIGNMENT
         //// TASK MP.1 -> replace the following code with ring buffer of size dataBufferSize
@@ -100,7 +98,6 @@ int main(int argc, const char *argv[])
             // Remove the oldest image from the buffer (the first one in the vector)
             dataBuffer.erase(dataBuffer.begin());
         }
-        //////////////////////////////
         // push image into data frame buffer
         DataFrame frame;
         frame.cameraImg = img;
@@ -157,10 +154,8 @@ int main(int argc, const char *argv[])
 
         /* DETECT IMAGE KEYPOINTS */
 
-      ///////
             double t = (double)cv::getTickCount(); // Start timing
 
-      ///////
         // convert current image to grayscale
         cv::Mat imgGray;
         cv::cvtColor((dataBuffer.end()-1)->cameraImg, imgGray, cv::COLOR_BGR2GRAY);
@@ -168,12 +163,12 @@ int main(int argc, const char *argv[])
         // extract 2D keypoints from current image
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
        string detectorType = "SHITOMASI";
-        //string detectorType = "HARRIS";
-        //string detectorType = "FAST";
-        //string detectorType = "BRISK";
-        //string detectorType = "ORB";
-        //string detectorType = "AKAZE";
-        //string detectorType = "SIFT";
+       //string detectorType = "HARRIS";
+       //string detectorType = "FAST";
+       //string detectorType = "BRISK";
+       //string detectorType = "ORB";
+       //string detectorType = "AKAZE";
+       //string detectorType = "SIFT";
 
         if (detectorType.compare("SHITOMASI") == 0)
         {
@@ -188,20 +183,12 @@ int main(int argc, const char *argv[])
             // FAST, BRISK, ORB, AKAZE, SIFT
             detKeypointsModern(keypoints, imgGray, detectorType, false);
         }
-      //////////////////////////////////
-      
-      
-  //     t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-//cout << detectorType << " keypoint detection took: " << 1000 * t / 1.0 << " ms" << endl;
 
 // Push keypoints to data buffer
 (dataBuffer.end() - 1)->keypoints = keypoints;
 
         //cout << "#2 : DETECT KEYPOINTS done" << endl;
-
-      
-      /////////////////////////////////
-      
+        
         // optional : limit number of keypoints (helpful for debugging and learning)
         bool bLimitKpts = false;
         if (bLimitKpts)
@@ -233,18 +220,7 @@ int main(int argc, const char *argv[])
      //string descriptorType = "AKAZE"; // BRIEF, ORB, FREAK, AKAZE, SIFT
      //string descriptorType = "SIFT"; // BRIEF, ORB, FREAK, AKAZE, SIFT
       
-      /////////////////////////////
-      // Start timing for descriptor extraction
-      /*
-        t = (double)cv::getTickCount(); // Start timing
-
-        descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
-
-        t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-        cout << descriptorType << " descriptor extraction took: " << 1000 * t / 1.0 << " ms" << endl;
-*/
-      ////////////////////////////
-      
+    
       
       descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
 
@@ -261,7 +237,7 @@ int main(int argc, const char *argv[])
 
             vector<cv::DMatch> matches;
             string matcherType = "MAT_BF";        // MAT_BF, MAT_FLANN
-          //  string matcherType = "MAT_FLANN";   // MAT_BF, MAT_FLANN
+            //string matcherType = "MAT_FLANN";   // MAT_BF, MAT_FLANN
 
             string descriptorType = "DES_BINARY"; // DES_BINARY, DES_HOG
             //string descriptorType = "DES_HOG"; // DES_BINARY, DES_HOG
