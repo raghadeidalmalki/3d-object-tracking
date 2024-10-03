@@ -2,7 +2,7 @@
 
 By completing this project, we will have a solid understanding of keypoint detectors, descriptors, and methods to match them between successive images. Also, we will know how to detect objects in an image using the YOLO deep-learning framework. And finally, know how to associate regions in a camera image with Lidar points in 3D space. 
 
-**Program schematic:**
+**Program Schematic:**
 
 <img src="images/course_code_structure.png" width="779" height="414" />
 
